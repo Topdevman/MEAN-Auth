@@ -8,13 +8,14 @@ import { UserService } from '../../services/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  public userInfo: any = [];
+  userInfo: any = [];
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getUsers()
       .subscribe(users => {
         this.userInfo = users;
+        // console.log(this.userInfo);
       })
   }
 

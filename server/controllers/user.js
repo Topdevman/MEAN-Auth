@@ -7,6 +7,15 @@ module.exports.register = function(req, res) {
         if(err) {
             throw err;
         }
-        res.status(201).json(user);
+        res.status(201).send(user);
     });
+}
+
+module.exports.getUsers = function(req, res) {
+    User.getUsers((err, users) => {
+        if(err) {
+            throw err;
+        }
+        res.status(201).send(users);
+    })
 }

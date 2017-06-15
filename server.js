@@ -7,13 +7,14 @@ const passport = require('passport');
 const app = express();
 const routes = require('./server/routes');
 const rootRouter = express.Router();
+const authMiddleware = require('./server/middleware/auth');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// passport.use();
-// app.use(passport.initialize());
+passport.use(authMiddleware.localStrategy);
+app.use(passport.initialize());
 
 routes(rootRouter);
 app.use('/api', rootRouter);

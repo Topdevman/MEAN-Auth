@@ -28,7 +28,7 @@ export class UserService {
       this.authHttp.get('/api/users')
         .toPromise()
         .then(data => {
-          observer.next(data);
+          observer.next(data.json());
         }).catch(error => observer.error(error));
     })
   }
