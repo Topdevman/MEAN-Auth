@@ -15,20 +15,20 @@ export class UserService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return Observable.create(observer => {
-      this.http.post('/register', JSON.stringify(userInfo))
+      this.http.post('/api/register', JSON.stringify(userInfo), {headers: headers})
         .toPromise()
         .then(data => {
-          observer.complete(data);
+          observer.next(true);
         }).catch(error => observer.error(error));
     });
   }
 
   getUsers(): Observable<any> {
     return Observable.create(observer => {
-      this.authHttp.get('/users')
+      this.authHttp.get('/api/users')
         .toPromise()
         .then(data => {
-          observer.complete(data);
+          observer.next(data);
         }).catch(error => observer.error(error));
     })
   }

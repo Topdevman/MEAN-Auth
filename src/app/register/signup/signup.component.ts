@@ -28,11 +28,10 @@ export class SignupComponent implements OnInit {
     this.loading = true;
     this.userService.signup(this.model)
         .subscribe(result => {
-            if (result === true) {
-                // login successful
+            console.log(result);
+            if (result) {
                 this.router.navigate(['/login']);
             } else {
-                // login failed
                 this.error = 'Informations are incorrect';
                 this.loading = false;
             }
