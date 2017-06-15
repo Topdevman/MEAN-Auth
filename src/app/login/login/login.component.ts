@@ -9,21 +9,22 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  model: any = {
-    username: '',
-    password: ''
-  };
-  loading = false;
-  error = '';
+    model: any = {
+        username: '',
+        password: ''
+    };
+    loading = false;
+    error = '';
 
-  constructor(
-        private router: Router,
-        private authService: AuthService) { }
+    constructor(
+            private router: Router,
+            private authService: AuthService) { }
 
-  ngOnInit() {
-          // reset login status
-          this.authService.logout();
-      }
+    ngOnInit() {
+        if (localStorage.getItem('token')) {
+            this.authService.logout();
+        }
+    }
 
   login() {
       this.loading = true;

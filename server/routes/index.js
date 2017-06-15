@@ -13,4 +13,5 @@ module.exports = (router) => {
             authMiddleware.generateToken, authMiddleware.sendAuthToken);
     router.get('/users', authMiddleware.checkAuthToken, authMiddleware.checkAuthTokenValid,
             userController.getUsers);
+    router.delete('/logout', authMiddleware.checkAuthToken, authMiddleware.checkAuthTokenValid, authMiddleware.logout)
 }

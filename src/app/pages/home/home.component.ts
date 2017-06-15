@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,14 +11,17 @@ import { UserService } from '../../services/user.service';
 export class HomeComponent implements OnInit {
 
   userInfo: any = [];
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.userService.getUsers()
       .subscribe(users => {
         this.userInfo = users;
-        // console.log(this.userInfo);
       })
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

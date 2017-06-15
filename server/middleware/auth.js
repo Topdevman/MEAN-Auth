@@ -81,9 +81,9 @@ module.exports.localStrategy = new LocalStrategy({usernameField: 'username', pas
 });
 
 module.exports.logout = function (req, res, next) {
-  User.clearUserSession(req.user.id).then(() => {
+  User.clearUserSession(req.user.id, function(err, user) {
     req.logout();
-    res.send();
-  }).catch(next);
+    res.status(201).send(user.token.token);
+  });
 };
 
